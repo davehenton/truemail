@@ -63,7 +63,7 @@ module Truemail
 
           it 'calls predefined validation class' do
             expect(Truemail::Validate::Regex).to receive(:check)
-            expect(validator_instance_run).to be_an_instance_of(Truemail::Validator)
+            expect(validator_instance_run).to be_an_instance_of(described_class)
           end
 
           specify do
@@ -76,7 +76,7 @@ module Truemail
 
           it 'not calls predefined validation class' do
             expect(Truemail::Validate::Regex).not_to receive(:check)
-            expect(validator_instance_run).to be_an_instance_of(Truemail::Validator)
+            expect(validator_instance_run).to be_an_instance_of(described_class)
           end
 
           context 'with whitelisted email' do
@@ -104,7 +104,7 @@ module Truemail
 
             it 'not pushes logs' do
               expect(logger_instance).not_to receive(:push)
-              expect(validator_instance_run).to be_an_instance_of(Truemail::Validator)
+              expect(validator_instance_run).to be_an_instance_of(described_class)
             end
           end
         end
@@ -115,7 +115,7 @@ module Truemail
 
             it 'pushes logs' do
               expect(logger_instance).to receive(:push).with(validator_instance)
-              expect(validator_instance_run).to be_an_instance_of(Truemail::Validator)
+              expect(validator_instance_run).to be_an_instance_of(described_class)
             end
           end
         end
